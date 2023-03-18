@@ -5,11 +5,11 @@
   "homepage": "https://MochiBao.github.io/dz",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /dz/"
+    "build": "parcel build src/*.html --public-url /dzgit remote add origin https://github.com/MochiBao/dz.git/"
   },
   "repository": {
     "type": "git",
-    "url": "git+посилання на ваш репозиторій.git"
+    "url": "git+https://github.com/MochiBao/dz.git"
   },
   "keywords": [],
   "author": "",
