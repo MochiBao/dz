@@ -11,6 +11,7 @@ function onSubmit(e) {
     } = e.currentTarget;
 
     const markup = createLi(email.value, password.value);
+    console.log('murkup :>> ', markup);
 
     if (email.value === "" && password.value === "") {
         Notiflix.Notify.failure("Введіть дані");
@@ -18,7 +19,8 @@ function onSubmit(e) {
     }
 
     Notiflix.Notify.success("Вас додано у список");
-    list.insertAdjacentElement("beforeend", markup);
+    console.log('list :>> ', list);
+    list.insertAdjacentHTML("beforeend", markup);
 
 
     e.currentTarget.reset();

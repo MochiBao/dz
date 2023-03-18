@@ -5,7 +5,7 @@
   "homepage": "https://MochiBao.github.io/dz",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /dzgit remote add origin https://github.com/MochiBao/dz.git/"
+    "build": "parcel build src/*.html --public-url /dz/"
   },
   "repository": {
     "type": "git",
