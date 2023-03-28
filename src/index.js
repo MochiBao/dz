@@ -24,4 +24,13 @@ function onSubmit(e) {
 
 
     e.currentTarget.reset();
+
+    const LOCAL = "markup";
+    const item = localStorage.getItem(LOCAL);
+    const lox = JSON.parse(item);
+    const hz = localStorage.setItem(LOCAL, JSON.stringify(markup));
 };
+
+
+
+
