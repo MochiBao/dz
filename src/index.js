@@ -1,36 +1,48 @@
-import Notiflix from "notiflix";
-import createLi from "./js/renderHtml";
+import { createLi, createLiFromStorage } from './js/renderHtml';
 
-const form = document.querySelector(".form");
-const list = document.querySelector(".list");
-form.addEventListener("submit", onSubmit);
+import Notiflix from 'notiflix';
+
+const form = document.querySelector('.form');
+const list = document.querySelector('.list');
+
+form.addEventListener('submit', onSubmit);
+
+const VALUES_KEY = 'values';
+
+const values = [];
+
 function onSubmit(e) {
-    e.preventDefault();
-    const {
-        "elements": {email, password}
-    } = e.currentTarget;
+  e.preventDefault();
 
-    const markup = createLi(email.value, password.value);
-    console.log('murkup :>> ', markup);
+  const {
+    elements: { email, password },
+  } = e.currentTarget;
 
-    if (email.value === "" && password.value === "") {
-        Notiflix.Notify.failure("Введіть дані");
-        return;
-    }
+  values.push({ email: email.value, password: password.value });
 
-    Notiflix.Notify.success("Вас додано у список");
-    console.log('list :>> ', list);
-    list.insertAdjacentHTML("beforeend", markup);
+  localStorage.setItem(VALUES_KEY, JSON.stringify(values));
 
+  const markup = createLi(email.value, password.value);
 
-    e.currentTarget.reset();
+  if (email.value === '' && password.value === '') {
+    Notiflix.Notify.failure('Введіть данні');
+    return;
+  }
 
-    const LOCAL = "markup";
-    const item = localStorage.getItem(LOCAL);
-    const lox = JSON.parse(item);
-    const hz = localStorage.setItem(LOCAL, JSON.stringify(markup));
-};
+  Notiflix.Notify.success('Вас додано у список');
 
+  list.insertAdjacentHTML('beforeend', markup);
 
+  e.currentTarget.reset();
+}
+
+const fromLocal = createLiFromStorage(VALUES_KEY);
+
+list.insertAdjacentHTML('beforeend', fromLocal);
+
+// const LOCAL = "markup";
+//     const item = localStorage.getItem(LOCAL);
+//     const lox = JSON.parse(item);
+//     const hz = localStorage.setItem(LOCAL, JSON.stringify(markup));
 
 
