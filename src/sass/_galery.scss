@@ -1,0 +1,16 @@
+.list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center
+};
+
+.galleryItem {
+    margin-right: 30px;
+    margin-bottom: 30px;
+};
+
+.gallery-link {
+    text-decoration: none;
+};
