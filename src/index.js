@@ -1,48 +1,47 @@
-import { createLi, createLiFromStorage } from './js/renderHtml';
+// import { createLi, createLiFromStorage } from './js/renderHtml';
 
-import Notiflix from 'notiflix';
+// import Notiflix from 'notiflix';
 
-const form = document.querySelector('.form');
-const list = document.querySelector('.list');
+// const form = document.querySelector('.form');
+// const list = document.querySelector('.list');
 
-form.addEventListener('submit', onSubmit);
+// form.addEventListener('submit', onSubmit);
 
-const VALUES_KEY = 'values';
+// const VALUES_KEY = 'values';
 
-const values = [];
+// const values = [];
 
-function onSubmit(e) {
-  e.preventDefault();
+// function onSubmit(e) {
+//   e.preventDefault();
 
-  const {
-    elements: { email, password },
-  } = e.currentTarget;
+//   const {
+//     elements: { email, password },
+//   } = e.currentTarget;
 
-  values.push({ email: email.value, password: password.value });
+//   values.push({ email: email.value, password: password.value });
 
-  localStorage.setItem(VALUES_KEY, JSON.stringify(values));
+//   localStorage.setItem(VALUES_KEY, JSON.stringify(values));
 
-  const markup = createLi(email.value, password.value);
+//   const markup = createLi(email.value, password.value);
 
-  if (email.value === '' && password.value === '') {
-    Notiflix.Notify.failure('Введіть данні');
-    return;
-  }
+//   if (email.value === '' && password.value === '') {
+//     Notiflix.Notify.failure('Введіть данні');
+//     return;
+//   }
 
-  Notiflix.Notify.success('Вас додано у список');
+//   Notiflix.Notify.success('Вас додано у список');
 
-  list.insertAdjacentHTML('beforeend', markup);
+//   list.insertAdjacentHTML('beforeend', markup);
 
-  e.currentTarget.reset();
-}
+//   e.currentTarget.reset();
+// }
 
-const fromLocal = createLiFromStorage(VALUES_KEY);
+// const fromLocal = createLiFromStorage(VALUES_KEY);
 
-list.insertAdjacentHTML('beforeend', fromLocal);
+// list.insertAdjacentHTML('beforeend', fromLocal);
 
-// const LOCAL = "markup";
-//     const item = localStorage.getItem(LOCAL);
-//     const lox = JSON.parse(item);
-//     const hz = localStorage.setItem(LOCAL, JSON.stringify(markup));
-
+// // const LOCAL = "markup";
+// //     const item = localStorage.getItem(LOCAL);
+// //     const lox = JSON.parse(item);
+// //     const hz = localStorage.setItem(LOCAL, JSON.stringify(markup));
 

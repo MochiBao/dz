@@ -1,39 +1,22 @@
-// console.log(1);
-
-// setTimeout(()=> {
-//     console.log(2);
-// }, 0);
-
-// console.log(3);
-
 const refs = {
-    seconds: document.querySelector("#clock")
-}
+  seconds: document.querySelector('#clock'),
+};
+
 const timeout = setTimeout(() => {
-console.log("реклама");
+  console.log('Реклама');
 }, 10000);
 
-console.log('timeout :>> ', timeout);
+console.log(timeout);
+
 clearTimeout(timeout);
 
+let seconds = 0;
 
-
-function console(params) {
-    console.log('1 :>> ', 1);
-};
-setInterval(console(), 1000);
-
-
-let seconds  = 0;
 const timer = setInterval(() => {
-    seconds++;
-    refs.seconds.innerHTML = `Ви вже знаходитесь на нашому сайті ${seconds} секунд`;
+  seconds++;
+  refs.seconds.innerHTML = `Ви вже знаходитись на нашому сайті ${seconds} секунд`;
 }, 1000);
 
-console.log('timer :>> ', timer);
+console.log(timer);
+
 clearInterval(timer);
-
-
-
-
-
