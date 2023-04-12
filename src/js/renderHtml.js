@@ -62,7 +62,7 @@ function createFilters() {
   return filter;
 };
 
-function createCountry(country) {
+function createCountrys(country) {
   console.log(country);
 
   const markUp = country
@@ -78,10 +78,25 @@ function createCountry(country) {
   return markUp;
 };
 
+function createCountry(country) {
+  const markUp = country
+    .map(
+      ({ currencies, population, languages }) => `<div class="">
+    <p>currencies --->  ${[...Object.keys(currencies)]} </p>
+    <p>population --->  ${population} </p>
+    <p>languages --->  ${[...Object.values(languages)]} </p>
+ </div>`
+    )
+    .join(' ');
+
+  return markUp;
+}
+
 export {
   createLi,
   createLiFromStorage,
   createLiImg,
   createFilters,
+  createCountrys,
   createCountry,
 };

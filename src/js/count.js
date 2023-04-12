@@ -1,7 +1,8 @@
-import throttle from 'lodash.throttle';
 import NewClass from '../views/country';
 import Notiflix from 'notiflix';
-import { createCountry } from './renderHtml';
+import { createCountry, createCountrys } from './renderHtml';
+import { debounce } from 'debounce';
+import throttle from 'lodash.throttle';
 
 const refs = {
   input: document.querySelector('#search-box'),
@@ -10,32 +11,41 @@ const refs = {
 };
 
 const newClass = new NewClass();
-refs.input.addEventListener('input', throttle(inputValue, 1000));
+refs.input.addEventListener('input', debounce(inputValue, 1000));
 
 function inputValue(e) {
   const value = e.target.value.trim();
   newClass.val = value;
 
   if (!value) {
-    refs.country.innerHTML = '';
-    refs.info.innerHTML = '';
+    createHtml();
     Notiflix.Notify.info('Введіть валідне значення');
     return;
-  }
+  };
 
   newClass.fetchCountries().then(response => {
-    if (response.length < 10 && response.length > 2) {
-      refs.country.innerHTML = '';
-      refs.info.innerHTML = '';
-      Notiflix.Notify.info('Уточніть, будь ласка.');
-      refs.country.innerHTML = createCountry(response);
-    }
-
     if (response.length >= 10) {
-      refs.country.innerHTML = '';
-      refs.info.innerHTML = '';
+      createHtml();
       Notiflix.Notify.info('Занадто багато результатів');
-      refs.country.innerHTML = createCountry(response);
-    }
+      return;
+    };
+
+    if (response.length < 10 && response.length > 2) {
+      createHtml(createCountrys(response));
+      Notiflix.Notify.info('Введіть більш точне значення');
+      return;
+    };
+
+    if (response.length === 1) {
+      console.log(response);
+      createHtml(createCountrys(response), createCountry(response));
+      Notiflix.Notify.info('Ми знайшли! Ура!');
+      return;
+    };
   });
+};
+
+function createHtml(country = '', info = '') {
+  refs.country.innerHTML = country;
+  refs.info.innerHTML = info;
 };

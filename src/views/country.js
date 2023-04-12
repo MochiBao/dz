@@ -1,13 +1,17 @@
+const BASE_URL = "https://restcountries.com/v3.1/";
+
+
+
 export default class NewClass {
   constructor() {
-    this.value = 'Ukraine';
-  }
+    this.value = this.value;
+  };
 
   fetchCountries() {
-    return fetch(`https://restcountries.com/v3.1/name/${this.value}`)
+    return fetch(`${BASE_URL}name/${this.value}`)
       .then(response => {
         if (!response.ok) {
-          throw new Error(item.status);
+          throw new Error(response.status);
         }
         return response.json();
       })

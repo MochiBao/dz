@@ -40,6 +40,57 @@ const func = async () => {
   }
 };
 
+
+const resolveProm = (text) => {
+  return new Promise (resolve => {
+    setTimeout(() => resolve(text), 1000)
+  })
+};
+
+const promiseA = resolveProm("PromiseA");
+const promiseB = resolveProm("PromiseB");
+const promiseC = resolveProm("PromiseC");
+const promiseD = resolveProm("PromiseD");
+
+
+Promise.all([promiseA, promiseB, promiseC, promiseD])
+  .then(
+  response => console.log(response)
+  .catch(
+  err => err.status
+  )
+);
+
+//повертає всі проміси
+
+Promise.race([promiseA, promiseB, promiseC, promiseD])
+  .then(
+  response => console.log(response)
+);
+
+//повертає той проміс, що виконався найшвидше
+
+new Promise(resolve => resolve("Все добре")).then(
+  response => console.log(response)
+);
+
+//повертає позитивний результат
+
+new Promise(reject => reject("Все погано")).then(
+  response => console.log(response)
+);
+
+// повертає негативний результат 
+
+
+
+
+
+
+
+
+// ----------------------------------------
+
 const BASE_URL = 'https://restcountries.com/v3.1';
 const NeededFIELDS = '?fields=name,capital,population,flags,languages';
 export default class NewClass {
