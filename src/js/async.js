@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const refs = {
   seconds: document.querySelector('#clock'),
 };
@@ -20,3 +22,10 @@ const timer = setInterval(() => {
 console.log(timer);
 
 clearInterval(timer);
+
+// fetch("https://restcountries.com/v3.1/all",{
+// method: "post",
+// }
+// );
+
+axios.post("url", {name: "blallsa", password: "blablabla"} );

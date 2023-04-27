@@ -45,3 +45,14 @@
 // //     const lox = JSON.parse(item);
 // //     const hz = localStorage.setItem(LOCAL, JSON.stringify(markup));
 
+const LOCAL_KEY = "USER";
+const obj = {
+    name: "Lox",
+    age: 100,
+};
+
+localStorage.setItem(LOCAL_KEY, JSON.stringify(obj));
+const storageObj = localStorage.getItem(LOCAL_KEY);
+const parseObj = JSON.parse(storageObj);
+parseObj.age = 30;
+localStorage.setItem(LOCAL_KEY, JSON.stringify(parseObj));

@@ -1,5 +1,7 @@
 const BASE_URL = "https://restcountries.com/v3.1/";
 
+const ULR_PARAMS = "?fields=name, flags, languages & languages = "
+
 
 
 export default class NewClass {
@@ -8,14 +10,20 @@ export default class NewClass {
   };
 
   fetchCountries() {
-    return fetch(`${BASE_URL}name/${this.value}`)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(response.status);
-        }
-        return response.json();
-      })
-      .catch(err => console.log(err.status));
+    return fetch(`${BASE_URL}name/${this.value} ${ULR_PARAMS}`, {
+      method: "POST",
+      headers: {
+        
+      },
+      body: JSON.stringify({name, password})
+    });
+      // .then(response => {
+      //   if (!response.ok) {
+      //     throw new Error(response.status);
+      //   }
+      //   return response.json();
+      // })
+      // .catch(err => console.log(err.status));
   };
 
   get val() {

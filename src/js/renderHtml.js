@@ -34,7 +34,7 @@ function createLiImg(filterValue) {
             </li>`;
       })
       .join(' ');
-  }
+  };
 
   return galleryItems
     .map(({ preview, original, description }) => {

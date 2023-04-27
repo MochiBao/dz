@@ -27,7 +27,7 @@ function filter(e) {
   };
 
   
-}
+};
 
 let lightbox = new SimpleLightbox('.list a', {
   captionsData: 'alt',
