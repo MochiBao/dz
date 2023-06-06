@@ -23,18 +23,23 @@ async function fetch(q = 'car', page = 1) {
     return response;
   } catch (error) {
     console.log(error.message);
-  }
+  };
 }
 refs.input.addEventListener('input', debounce(onInput, 300));
-refs.button.addEventListener('click', onClick);
+
 
 async function render(data) {
   const markUp = data
     .map(({ comments, downloads, likes, webformatURL, tags }) => {
-      return `<img src="${webformatURL}" alt="${tags}">
-      <div>comments: ${comments} </div>
-      <div>download: ${downloads}</div>
-      <div> likes:${likes} </div>`;
+      return `<ul class="ul">
+      <li class="li">
+      <img src="${webformatURL}" class="img" alt="${tags}">
+      <div class="comments">comments: ${comments} </div>
+      <div class="downoads">download: ${downloads}</div>
+      <div class="likes"> likes:${likes} </div>
+      </li>
+      <ul class="ul">`
+      ;
     })
     .join(' ');
 
@@ -64,7 +69,7 @@ async function onInput(e) {
 
   refs.gallery.insertAdjacentHTML('beforeend', markUp);
 }
-
+refs.button.addEventListener('click', onClick);
 async function onClick(e) {
   // page = page + 1;
   const value = refs.input.value.trim();
@@ -78,7 +83,7 @@ async function onClick(e) {
 
   // images <= 0
   // ? Notiflix.Notify.info(`Нажаль картинки завершились`)
-  // : Notiflix.Notify.info(
+  // : Notiflix.Notify.info(``z
   //     `Ура ми знайшли  ${images} картинку за вашим запитом`
   //   );
 
